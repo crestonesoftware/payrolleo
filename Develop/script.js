@@ -1,7 +1,8 @@
 const employeeData = new Array();
 
-// Display the average salary
-const displayAverageSalary = function(employeesArray) {
+// Displays the average salary of employees in employeesArray, rounded to the nearest unit
+// Uses simple sum-and-divide algorithm to calculate the average
+const displayAverageSalary = function(employeesArray) {  
   let sum = 0;
   for (const employee of employeesArray) {
     sum += employee.salary;
@@ -10,6 +11,19 @@ const displayAverageSalary = function(employeesArray) {
   const averageSalary = Math.round(sum/employeesArray.length);
   console.log(`The average employee salary between our ${employeesArray.length} employees is
   ${averageSalary}`);
+}
+
+// selects an employee, from employeesArray, by using a random number to 
+// compute an index for employeesArray
+const getRandomEmployee = function(employeesArray) {
+  let randomIndex = Math.floor(Math.random() * employeesArray.length);
+  const selectedEmployee = employeesArray[randomIndex];
+  console.log(`Congratulations to ${selectedEmployee.firstName} ${selectedEmployee.lastName}, our randomly selected employee. Woohoo!`);
+  console.log(`${selectedEmployee.firstName}, our evil director of HR has selected you, but isn't revealing what you've been selected for. BWA-HAH-HAH-HAHAAAH!`)
+}
+
+const displaySeparatorLine = function() {
+  console.log("===============================");
 }
 
 // Test data - delete this section when no longer needed
@@ -39,10 +53,13 @@ function initTestData() {
 
 /* *************** */
 // Start real code
+// Select a random employee
 
 function main() {
   initTestData();
   displayAverageSalary(employeeData);
+  displaySeparatorLine();
+  getRandomEmployee(employeeData);
 }
 
 main();
@@ -56,10 +73,7 @@ const collectEmployees = function() {
 
 
 
-// Select a random employee
-const getRandomEmployee = function(employeesArray) {
-  // TODO: Select and display a random employee
-}
+
 
 /*
   ====================
