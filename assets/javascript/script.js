@@ -1,20 +1,33 @@
-const employeeData = new Array();
+// GLOBAL DATA
+let employees = new Array();
 
-// Displays the average salary of employees in employeesArray, rounded to the nearest unit
-// Uses simple sum-and-divide algorithm to calculate the average
+// Get references to button elements
+const addEmployeesBtn = document.querySelector('#add-employees-btn');
+const resetEmployeesBtn = document.querySelector('#reset-employees-btn');
+
+/* ****************************************************************** */
+/*  displayAverageSalary()                                            */
+/*                                                                    */
+/*  Displays the average salary of employees in employeesArray, rounded
+/*    to the nearest unit Uses simple sum-and-divide algorithm to 
+/*    calculate the average                                           */
 const displayAverageSalary = function(employeesArray) {  
   let sum = 0;
   for (const employee of employeesArray) {
+    //?console.log(`salary for ${employee.firstName} is ${employee.salary}`);
     sum += employee.salary;
-    // console.log(`adding salary ${employee.salary}. Total is ${sum}`);
+    //?console.log(`adding salary ${employee.salary}. Total is ${sum}`);
   }
   const averageSalary = Math.round(sum/employeesArray.length);
   console.log(`The average employee salary between our ${employeesArray.length} employees is
   ${averageSalary}`);
 }
 
-// selects an employee, from employeesArray, by using a random number to 
-// compute an index for employeesArray
+/* ****************************************************************** */
+/*  getRandomEmployee()                                               */
+/*                                                                    */
+/*  selects an employee, from the global employees Array, by using a  */
+/*  random number to compute an index for the Array                   */
 const getRandomEmployee = function(employeesArray) {
   let randomIndex = Math.floor(Math.random() * employeesArray.length);
   const selectedEmployee = employeesArray[randomIndex];
@@ -22,58 +35,40 @@ const getRandomEmployee = function(employeesArray) {
   console.log(`${selectedEmployee.firstName}, our evil director of HR has selected you, but isn't revealing what you've been selected for. BWA-HAH-HAH-HAHAAAH!`)
 }
 
+/* ****************************************************************** */
+/*  displaySeparatorLine()                                            */
+/*                                                                    */
+/*  log a line of '=' as a visual separator in the console            */
 const displaySeparatorLine = function() {
   console.log("===============================");
 }
 
-// Test data - delete this section when no longer needed
-const employeeMing = {
-  firstName: "Lety",
-  lastName: "Ramirez",
-  salary: 145000
-}
-
-const employeeBob = {
-  firstName: "Bob",
-  lastName: "Skrewt",
-  salary: 125000
-}
-
-const employeeSammy = {
-  firstName: "Sammy",
-  lastName: "The Penguin",
-  salary: 155702
-}
-
-function initTestData() {
-  employeeData.push(employeeSammy);
-  employeeData.push(employeeMing);
-  employeeData.push(employeeBob);
-}
-
-/* *************** */
-// Start real code
-// Select a random employee
-
-function main() {
-  initTestData();
-  displayAverageSalary(employeeData);
-  displaySeparatorLine();
-  getRandomEmployee(employeeData);
-}
-
-main();
-// Get a reference to the #add-employees-btn element
-const addEmployeesBtn = document.querySelector('#add-employees-btn');
-
-// Collect employee data
+/* ****************************************************************** */
+/*  collectEmployees()                                                */
+/*                                                                    */
+/*  populate the global employees Array with data from the user       */
 const collectEmployees = function() {
-  // TODO: Get user input to create and return an array of employee objects
+let continueAddingEmployees = true;
+  while(continueAddingEmployees) {
+    const newEmployee = {
+      firstName: prompt("Employee's First Name"),
+      lastName: prompt("Employee's Last Name"),
+      salary: Number(prompt("Employee's Salary"))
+    }
+    employees.push(newEmployee);
+    continueAddingEmployees = confirm("Continue adding Employees, or Cancel?");
+  }
+  return employees;
 }
 
-
-
-
+/* ****************************************************************** */
+/*  resetEmployeeData()                                               */
+/*                                                                    */
+/*  clears the global array of employees then starts data entry       */
+const resetEmployeeData = function() {
+  employees = new Array();
+  trackEmployeeData();
+}
 
 /*
   ====================
@@ -138,9 +133,6 @@ const trackEmployeeData = function() {
   displayEmployees(employees);
 }
 
-// Add event listener to 'Add Employees' button
+// Add event listener to buttons
 addEmployeesBtn.addEventListener('click', trackEmployeeData);
-
-
-
-
+resetEmployeesBtn.addEventListener('click', resetEmployeeData);
