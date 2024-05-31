@@ -53,8 +53,10 @@ let continueAddingEmployees = true;
     const newEmployee = {
       firstName: prompt("Employee's First Name"),
       lastName: prompt("Employee's Last Name"),
-      salary: Number(prompt("Employee's Salary"))
+      salary: ''
     }
+    while(isNaN(parseFloat(newEmployee.salary)))
+      newEmployee.salary = Number(prompt("Please enter Employee's Salary as a numeric value, without a currency symbol"));
     employees.push(newEmployee);
     continueAddingEmployees = confirm("Continue adding Employees, or Cancel?");
   }
