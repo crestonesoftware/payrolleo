@@ -34,7 +34,7 @@ GIVEN I am adding Employee Data
 - When I enter a non-numeric value
 
 	THEN I am prompted to "Please enter Employee Salary as a decimal value, without a currency symbol"
-
+![screenshot of validation error/prompt](./assets/doc/images/numeric-validation-prompt.jpg)
 
 GIVEN Employee data is present in the Employee Roster table
 - WHEN I click the Add Employees button and enter employee data
