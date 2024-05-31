@@ -28,7 +28,13 @@ GIVEN the Payrolleo application
 	THEN I find the Payrolleo application, deployed via Git Pages
 
 ### Bonus Features
-This release includes two bonus features, not requested by the product owner. They are submitted for consideration as product improvements:
+This release includes three bonus features, not requested by the product owner. They are submitted for consideration as product improvements:
+
+GIVEN I am adding Employee Data
+- When I enter a non-numeric value
+
+	THEN I am prompted to "Please enter Employee Salary as a decimal value, without a currency symbol"
+
 
 GIVEN Employee data is present in the Employee Roster table
 - WHEN I click the Add Employees button and enter employee data
